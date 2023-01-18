@@ -18,16 +18,19 @@ part to define the rules of the scanner. This rules always have the format
 PATTERN {ACTION}. In which the PATTER are usually regular definitions, and
 the action is some C code that will be executed every time that the pattern
 is recognized in the input. */
+
+/* IMPORTANT: is always necessary to put the regular definition name between
+curly braces when writing rules. */
 %%
-whitespace {
+{whitespace} {
   ; // Do nothing
 }
 
-numbers {
+{numbers} {
   printf("Number: %s\n", yytext);
 }
 
-chars {
+{chars} {
   printf("Chars: %s\n", yytext);
 }
 %%
