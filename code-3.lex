@@ -1,18 +1,10 @@
-/*
-Enunciado: crie um código em flex para reconhecer:
-
-- [x] Emails Válidos (Retornar: Esse é um e-mail);
-- [x] URLs válidas (Retornar: Essa é um URL);
-- [] IPV4 (Retornar: Esse é um Endereço IP);
-- [x] Quaisquer outras (Retornar: Não reconhecido).
-*/
-
 %{
   #include <stdio.h>
 %}
 
 email [a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z0-9.-]+
 url [a-zA-Z0-9]+:\/\/(www)?[0-9a-zA-Z_.~-]+(:[0-9]+)?\/[a-zA-Z0-9_~./?&=%,-]*
+ip ^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
 
 %%
 {email} {
@@ -21,6 +13,10 @@ url [a-zA-Z0-9]+:\/\/(www)?[0-9a-zA-Z_.~-]+(:[0-9]+)?\/[a-zA-Z0-9_~./?&=%,-]*
 
 {url} {
   printf("Essa é um URL\n");
+}
+
+{ip} {
+  printf("Esse é um Endereço IP\n");
 }
 
 .* {
