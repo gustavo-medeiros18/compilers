@@ -1,3 +1,5 @@
 *.c
 run
 sample.md
+input.txt
+output.txt
