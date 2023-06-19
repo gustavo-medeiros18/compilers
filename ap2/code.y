@@ -1,11 +1,11 @@
 %{
 #include <stdio.h>
 
+char isCompatible(char A, char B);
 char sum(char A, char B);
 char sub(char A, char B);
 char multiply(char A, char B);
 char divide(char A, char B);
-char isCompatible(char A, char B);
 %}
 
 
@@ -24,9 +24,9 @@ char isCompatible(char A, char B);
 %%
 
 line: ID EQ expression NEWLINE {
-  printf("Tipo da variavel: inteiro\n");
-  printf("Tipo da expressao: %s\n", ($3 == 'i') ? "inteiro" : "flutuante");
-  printf("%s\n", (isCompatible('i',$3) == 'T') ? "Sao compativeis" : "Nao sao compativeis");
+  printf("Variable type: int\n");
+  printf("Expression type: %s\n", ($3 == 'i') ? "int" : "float");
+  printf("%s\n", (isCompatible('i',$3) == 'T') ? "Are compatible" : "Aren't compatible");
 }
 | NEWLINE;
 
@@ -74,6 +74,16 @@ int yyerror(const char* msg) {
   return 0;
 }
 
+char isCompatible(char A, char B) {
+  char result;
+
+  if (A == B)
+    result = 'T';
+  else
+    result = 'F';
+
+  return result;
+}
 
 char sum(char A, char B) {
   char result;
@@ -122,15 +132,4 @@ char multiply(char A, char B) {
 
 char divide(char A, char B) {
   return 'f';
-}
-
-char isCompatible(char A, char B) {
-  char result;
-
-  if (A == B)
-    result = 'T';
-  else
-    result = 'F';
-
-  return result;
 }
